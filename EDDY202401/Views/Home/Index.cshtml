@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model DigitsViewModel
+
+<div class="text-center">
+    <div>
+        <label>Total records:</label>
+        <input type="text" value="@Model.count" readonly />
+        <br /><br />
+        <div>@Model.text</div>
+    </div>
+    <button onclick="location.href='@Url.Action("Index", "Home")'">Reload</button>
+</div>
