@@ -6,17 +6,17 @@ namespace EDDY202401.API.Controllers
     [ApiController]
     public class DigitsController : ControllerBase
     {
-        private static int[] data => Enumerable.Range(1, 100).ToArray();
+        private static int[] Data => Enumerable.Range(1, 100).ToArray();
 
-        [HttpGet()]
+        [HttpGet]
         public IActionResult Get([FromQuery] bool? filter = false)
         {
-            if (filter is null or false) return Ok(new { count = data.Length, data });
+            if (filter is null or false) return Ok(new { count = Data.Length, data = Data });
 
             int index = 1;
-            List<int> numbers = data.ToList();
-            List<int> pickedNumbers = new List<int>();
-            Random random = new Random();
+            List<int> numbers = Data.ToList();
+            List<int> pickedNumbers = new();
+            Random random = new();
 
             while (index <= 3)
             {

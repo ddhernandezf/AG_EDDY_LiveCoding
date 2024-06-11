@@ -5,11 +5,9 @@ namespace EDDY202401.Controllers
 {
     public class HomeController : Controller
     {
-        static HttpClient client = new HttpClient();
-
         public async Task<IActionResult> IndexAsync(bool? filter)
         {
-            DigitsViewModel result = new DigitsViewModel();
+            DigitsViewModel? result = new DigitsViewModel();
             string url = "http://localhost:5165/api/Digits";
 
             if (filter.HasValue)
@@ -17,13 +15,13 @@ namespace EDDY202401.Controllers
                 url += $"?filter={filter.Value}";
             }
 
-            using (HttpClient client = new HttpClient())
+            using (HttpClient httpClient = new HttpClient())
             {
-                client.BaseAddress = new Uri(url);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.BaseAddress = new Uri(url);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync(url);
+                HttpResponseMessage response = await httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
