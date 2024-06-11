@@ -7,10 +7,15 @@ namespace EDDY202401.Controllers
     {
         static HttpClient client = new HttpClient();
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(bool? filter)
         {
             DigitsViewModel result = new DigitsViewModel();
             string url = "http://localhost:5165/api/Digits";
+
+            if (filter.HasValue)
+            {
+                url += $"?filter={filter.Value}";
+            }
 
             using (HttpClient client = new HttpClient())
             {

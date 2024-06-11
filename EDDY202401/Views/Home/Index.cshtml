@@ -12,4 +12,5 @@
         <div>@Model.text</div>
     </div>
     <button onclick="location.href='@Url.Action("Index", "Home")'">Reload</button>
+    <button onclick="location.href='@Url.Action("Index", "Home", new { filter = true })'">Filter list</button>
 </div>
