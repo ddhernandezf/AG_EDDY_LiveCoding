@@ -4,6 +4,7 @@
     {
         public int count { get; set; }
         public int[] data { get; set; }
+        public int[] removedData { get; set; }
         public List<int> list => data.ToList();
         public string text => string.Join(", ", list);
     }
